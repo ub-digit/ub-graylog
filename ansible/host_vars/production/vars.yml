@@ -1,4 +1,10 @@
 ---
+graylog_hostname: graylog.ub.gu.se
+
+env_variables:
+  DATANODE_IMAGE: graylog/graylog-datanode:6.1
+  GRALOG_IMAGE: graylog/graylog-datanode:6.1
+
 secret_env_variables:
   GRAYLOG_PASSWORD_SECRET: '{{ vault_graylog_password_secret }}'
   GRAYLOG_DATANODE_PASSWORD_SECRET: '{{ vault_graylog_datanode_password_secret }}'
