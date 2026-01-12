@@ -1,0 +1,37 @@
+---
+docker_directory: './docker'
+data_dir: /data/graylog
+data_dirs:
+  graylog_data:
+    path: /data/graylog/data
+    owner: 1100
+    group: 1100
+    mode: "0755"
+  graylog_certs:
+    path: /data/graylog/certs
+    owner: 1100
+    group: 1100
+    mode: "0755"
+  # Used? Remove?
+  graylog_plugins:
+    path: /data/graylog/plugins
+    owner: 1100
+    group: 1100
+    mode: "0755"
+  graylog_server:
+    path: /data/graylog/server
+    owner: 1100
+    group: 1100
+    mode: "0755"
+  # 999?
+  datanode_data:
+    path: /data/graylog/datanode-data
+    owner: 999
+    group: 999
+    mode: "0755"
+  # 999?
+  mongodb_data:
+    path: /data/graylog/mongodb
+    owner: 999
+    group: 999
+    mode: "0755"

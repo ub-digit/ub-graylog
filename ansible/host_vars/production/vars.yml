@@ -1,0 +1,6 @@
+---
+secret_env_variables:
+  GRAYLOG_PASSWORD_SECRET: '{{ vault_graylog_password_secret }}'
+  GRAYLOG_DATANODE_PASSWORD_SECRET: '{{ vault_graylog_datanode_password_secret }}'
+  GRAYLOG_ROOT_PASSWORD_SHA2: '{{ vault_graylog_root_password_sha2 }}'
+  GRAYLOG_TRANSPORT_EMAIL_AUTH_PASSWORD: '{{ vault_graylog_transport_email_auth_password }}'

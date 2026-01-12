@@ -1,0 +1,4 @@
+*.DS_Store
+ssl/private/*
+!ssl/private/.gitkeep
+.vault_password

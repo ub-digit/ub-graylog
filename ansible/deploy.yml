@@ -1,0 +1,23 @@
+---
+- hosts: graylog
+  become: true
+  tasks:
+  # TODO: check if exists
+  - name: Copy certificate
+    ansible.builtin.copy:
+      src: ./graylog_ssl/certs/graylog.crt
+      dest: "{{ data_dirs.graylog_certs }}"
+      mode: '0755'
+      owner: root
+
+  - name: Copy private key
+    ansible.builtin.copy:
+      src: ./graylog_ssl/private/graylog.key
+      dest: "{{ data_dirs.graylog_certs }}"
+      mode: '0600'
+      owner: root
+
+  - name: Deploy app
+    include_role:
+      name: ub-ansible-deploy
+
