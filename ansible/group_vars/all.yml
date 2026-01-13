@@ -1,4 +1,7 @@
 ---
+docker_git_repo_url: https://github.com/ub-digit/ub-graylog.git
+docker_git_revision: master
+docker_command: 'docker compose'
 docker_directory: './docker'
 data_dir: /data/graylog
 data_dirs:
