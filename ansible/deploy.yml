@@ -1,23 +1,39 @@
 ---
-- hosts: graylog
+- hosts: all
   become: true
+  vars:
+    cert_path: "{{ playbook_dir ~ '/ssl/certs/graylog.crt' }}"
+    key_path:  "{{ playbook_dir ~ '/ssl/certs/graylog.key' }}"
+
   tasks:
-  # TODO: check if exists
+  - name: Check if certificate exists
+    ansible.builtin.stat:
+      path: "{{ cert_path }}"
+    register: cert_stat
+    delegate_to: localhost
+
   - name: Copy certificate
     ansible.builtin.copy:
-      src: ./graylog_ssl/certs/graylog.crt
-      dest: "{{ data_dirs.graylog_certs }}"
+      src: "{{ cert_path }}"
+      dest: "{{ data_dirs.graylog_certs.path }}"
       mode: '0755'
       owner: root
+    when: cert_stat.stat.exists
+
+  - name: Check if key exists
+    ansible.builtin.stat:
+      path: "{{ key_path }}"
+    register: key_stat
+    delegate_to: localhost
 
   - name: Copy private key
     ansible.builtin.copy:
-      src: ./graylog_ssl/private/graylog.key
-      dest: "{{ data_dirs.graylog_certs }}"
+      src: "{{ key_path }}"
+      dest: "{{ data_dirs.graylog_certs.path }}"
       mode: '0600'
       owner: root
+    when: key_stat.stat.exists
 
   - name: Deploy app
     include_role:
       name: ub-ansible-deploy
-
